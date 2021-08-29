@@ -15,7 +15,7 @@ class Login extends Component {
       url: 'http://127.0.0.1:8000/auth/',
       data: this.state.credentials
     })
-    .then(data => {console.log(data)});
+    .then(data => {console.log(data.data.token)});
   }
 
 
