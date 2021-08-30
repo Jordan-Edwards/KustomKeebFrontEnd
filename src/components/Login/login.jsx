@@ -7,7 +7,7 @@ class Login extends Component {
     credentials: {username: '', password: ''}
   }
 
-  
+
   login = event => {
     console.log(this.state.credentials)
     axios({
@@ -15,9 +15,28 @@ class Login extends Component {
       url: 'http://127.0.0.1:8000/auth/',
       data: this.state.credentials
     })
-    .then(data => {console.log(data.data.token)});
+    .then(
+      data => {
+        this.props.userLogin(data.data.token);
+      }
+    )
+    .catch( error => console.error(error))
   }
 
+  register = event => {
+    console.log(this.state.credentials)
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/users/',
+      data: this.state.credentials
+    })
+    .then(
+      data => 
+      {console.log(data);
+      }
+    )
+    .catch( error => console.error(error))
+  }
 
   inputChanged = event => {
     const cred = this.state.credentials;
